@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soil Health Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>🌱 Soil Health Analyzer</h1>
+
+    <form id="soilForm">
+      <input type="number" step="0.1" name="pH" placeholder="Enter pH" required>
+      <input type="number" step="0.1" name="temperature" placeholder="Enter Temperature (°C)" required>
+      <input type="number" step="0.1" name="moisture" placeholder="Enter Moisture (%)" required>
+      <input type="number" step="0.1" name="salinity" placeholder="Enter Salinity" required>
+      <input type="number" step="0.1" name="N" placeholder="Enter Nitrogen (mg/kg)" required>
+      <input type="number" step="0.1" name="P" placeholder="Enter Phosphorus (mg/kg)" required>
+      <input type="number" step="0.1" name="K" placeholder="Enter Potassium (mg/kg)" required>
+      <button type="submit">Analyze</button>
+    </form>
+
+    <div id="results" class="results">
+      <h2>Results</h2>
+      <p><strong>Prediction:</strong> <span id="prediction"></span></p>
+      <p><strong>Predicted Moisture:</strong> <span id="moisture"></span></p>
+  
+
+      <h3>Remedies:</h3>
+      <ul id="remedies"></ul>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
