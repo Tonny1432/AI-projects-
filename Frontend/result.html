@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Result - Terra Mind</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">➔</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="input.html" class="active">Soil Input</a>
+    <div class="dropdown">
+      <button class="dropbtn">More ▼</button>
+      <div class="dropdown-content">
+        <a href="history.html">History</a>
+        <a href="index.html">Logout</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow toggle button -->
+  <span id="toggleArrow" class="openbtn" onclick="toggleNav()">⬅</span>
+
+  <!-- Main Content -->
+  <div id="result-main" class="container">
+    <h2>🌱 Soil Analysis Result</h2>
+    <div id="resultDisplay">Your result will appear here.</div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const data = JSON.parse(localStorage.getItem("analysisResult"));
+      const resultDiv = document.getElementById("resultDisplay");
+
+      if (data) {
+        resultDiv.innerHTML = `
+          <h3>🧾 Prediction</h3>
+          <p><strong>Soil Type:</strong> ${data.prediction}</p>
+
+          <h3>📊 Future Parameters</h3>
+          <ul>
+            <li><b>pH:</b> ${data.parameters.pH.toFixed(2)}</li>
+            <li><b>Moisture:</b> ${data.parameters.moisture.toFixed(2)}%</li>
+            <li><b>Temperature:</b> ${data.parameters.temperature.toFixed(2)} °C</li>
+            <li><b>Nitrogen (N):</b> ${data.parameters.N.toFixed(2)}</li>
+            <li><b>Phosphorus (P):</b> ${data.parameters.P.toFixed(2)}</li>
+            <li><b>Potassium (K):</b> ${data.parameters.K.toFixed(2)}</li>
+            <li><b>salinity:</b> ${data.parameters.salinity.toFixed(2)}</li>
+          </ul>
+
+          <h3>💡 Remedies</h3>
+          <ul>${data.remedies.map(r => `<li>${r}</li>`).join("")}</ul>
+        `;
+
+        // Optional: clear so results don’t persist forever
+        localStorage.removeItem("analysisResult");
+      } else {
+        resultDiv.innerHTML = `<p>No result found. Please submit soil data first.</p>`;
+      }
+    });
+
+    // Sidebar toggle
+    function toggleNav() {
+      const sidebar = document.getElementById("sidebar");
+      const toggleArrow = document.getElementById("toggleArrow");
+
+      if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+        toggleArrow.innerHTML = "⬅";
+      } else {
+        sidebar.style.width = "250px";
+        toggleArrow.innerHTML = "➔";
+      }
+    }
+  </script>
+</body>
+</html>
+

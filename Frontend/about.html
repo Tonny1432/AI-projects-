@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About - Terra Mind</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, rgba(10, 146, 161, 1), rgba(213, 121, 7, 1));
+            color: #fff;
+        }
+
+        #about-main {
+            height: 100vh;
+            width: 60%;
+            /* take full screen height */
+            overflow-y: auto;
+            /* enable vertical scroll */
+            padding: 20px;
+            scrollbar-width: none
+        }
+
+        #about-main::-webkit-scrollbar {
+            display: none;
+        }
+
+        #about-main {
+            list-style-position: inside;
+            /* bring bullet closer */
+            padding-left: 0;
+            /* remove default left padding */
+            margin-left: 0;
+            /* remove default margin */
+        }
+
+        #about-main li {
+            margin: 5px 0;
+            /* spacing between items */
+            color: white;
+            /* keep visible on gradient */
+            font-size: 18px;
+            /* make readable */
+            line-height: 1.5;
+            /* nice spacing */
+        }
+
+
+        h1,
+        h2 {
+            text-align: center;
+            margin-top: 2px;
+            margin-bottom:3px;
+            color: #00ffcc;
+        }
+
+        h3 {
+            margin-top:4px;
+            margin-bottom:4px;
+            text-align: left;
+            color: #ffffff;
+        }
+
+        p {
+            text-align:left;
+              margin-top:4px;
+            margin-bottom:4px;
+        }
+
+        ul {
+              margin-top:4px;
+            margin-bottom:4px;
+        }
+
+        li {
+              margin-top:4px;
+            margin-bottom:4px;
+            text-align: left;
+        }
+
+        .highlight {
+            color: #1bc1ef;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+      <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">➔</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="result.html">Result</a>
+    <a href="input.html" class="active">Soil Input</a> 
+    <div class="dropdown">
+      <button class="dropbtn">More ▼</button>
+      <div class="dropdown-content">
+        <a href="index.html">Logout</a>
+      </div>
+    </div>
+    <!-- Arrow toggle button -->
+  <span id="toggleArrow" class="openbtn" onclick="toggleNav()">⬅</span>
+
+    <div id="about-main" class="container">
+        <h1>🌿 Terra Mind Smart Soil Sensing Platform</h1>
+        <h2>AI-powered Soil Health Monitoring and Prediction System.</h2>
+
+        <h3>⚡ Problem</h3>
+        <p>Modern farming faces challenges due to excessive use of fertilizers, pesticides,
+            and lack of real-time soil monitoring. Farmers often don’t know the exact health of their soil,
+            leading to reduced productivity and land degradation.</p>
+
+        <h3>🎯 Objective</h3>
+        <p>To create a smart system that <span class="highlight">monitors soil parameters</span>,
+            classifies soil health into defined states, and provides actionable remedies for sustainable farming.</p>
+
+        <h3>✅ Solution</h3>
+        <ul>
+            <li>Collected soil parameters: <span class="highlight">pH, Moisture, Temperature, EC, N, P, K</span>.</li>
+            <li>Classified soil into <span class="highlight">5 states</span>: Optimal, Stable, Alert, Warning, Critical.
+            </li>
+            <li>Applied <span class="highlight">threshold-based rules</span> for each parameter.</li>
+            <li>Provided <span class="highlight">remedies</span>:
+                <ul>
+                    <li>pH too low → Add lime/compost.</li>
+                    <li>pH too high → Add sulfur/organic matter.</li>
+                    <li>Moisture imbalance → Irrigate or improve drainage.</li>
+                    <li>N/P/K deficiency → Add fertilizers or organic manure.</li>
+                    <li>Salinity high → Leach soil with good water / salt-tolerant crops.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>💻 Technology Used</h3>
+        <ul>
+            <li><span class="highlight">Frontend:</span> HTML, CSS, JavaScript</li>
+            <li><span class="highlight">Backend:</span> Python Flask</li>
+            <li><span class="highlight">Machine Learning:</span> Scikit-learn / Threshold classifier</li>
+            <li><span class="highlight">Storage:</span> LocalStorage for history</li>
+        </ul>
+
+        <h3>⚙️ How it Works</h3>
+        <p>The user inputs soil values manually or uploads a file. The backend receives these values and compares them
+            against predefined <span class="highlight">thresholds</span>. Based on results, the system classifies soil
+            into one of 5 states and generates remedies. The results and history are displayed on the dashboard.</p>
+
+        <h3>🔍 Classification Process</h3>
+        <ul>
+            <li>Step 1 → Collect soil parameters (pH, N, P, K, EC, Moisture, Temperature).</li>
+            <li>Step 2 → Apply threshold rules for each parameter.</li>
+            <li>Step 3 → Combine results to decide soil state (Optimal → Critical).</li>
+            <li>Step 4 → Provide personalized remedies.</li>
+        </ul>
+    </div>
+    
+  <script>
+    let isOpen = false;
+
+    function toggleNav() {
+      const sidebar = document.getElementById("sidebar");
+      const toggleArrow = document.getElementById("toggleArrow");
+
+      if (isOpen) {
+        sidebar.style.width = "0";
+        toggleArrow.innerHTML = "⬅"; // arrow pointing left to open
+        isOpen = false;
+      } else {
+        sidebar.style.width = "250px";
+        toggleArrow.innerHTML = "➔"; // arrow pointing right to close
+        isOpen = true;
+      }
+    }
+    
+  </script>
+</body>
+
+</html>

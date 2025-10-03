@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Terra Mind</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">➔</a>
+    <a href="result.html">Result</a>
+    <a href="history.html">History</a>
+    <a href="input.html">Soil Input</a>
+    <div class="dropdown">
+      <button class="dropbtn">More ▼</button>
+      <div class="dropdown-content">
+        <a href="index.html">Logout</a>
+        <a href="about.html">About</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow toggle button -->
+  <span id="toggleArrow" class="openbtn" onclick="toggleNav()">⬅</span>
+
+  <!-- Main Content -->
+  <!-- Main Content -->
+<div id="dashboard-main" class="container">
+
+  <div id="intro" class="intro-container">
+    <h1><b>🌿 Welcome to Terra Mind Smart Soil Sensing Platform</b></h1>
+    <p class="intro-text">
+      Your AI-powered soil companion! Analyze soil in real-time and get instant insights.  
+      Track pH, moisture, temperature, EC, N, P, K — and receive actionable remedies. 🚀
+    </p>
+    <div class="features">
+      <div class="feature-card">
+        <p><b>Manual Input ➤</b> Enter your soil parameters directly and get predictions.</p>
+      </div>
+      <div class="feature-card">
+        <p><p><b>CSV Upload ➤</b>Upload multiple soil samples at once for batch analysis.</p>
+      </div>
+      <div class="feature-card">
+        <p><p><b>History & Remedies ➤</b>Keep track of past analyses and improve your soil efficiently.</p>
+      </div>
+    </div>
+
+    <!-- 5 Soil States Explanation -->
+    <div class="soil-states">
+      <h2>Soil Health Classification</h2>
+      <p>We classify soil into <strong>5 states</strong> to help you understand its health:</p>
+      <ul>
+        <li><strong>Optimal:</strong> All parameters are in healthy range. Soil is ideal for crops.</li>
+        <li><strong>Stable:</strong> Slight deviations in some parameters. Soil is mostly healthy.</li>
+        <li><strong>Alert:</strong> Some parameters are outside ideal range. Attention needed.</li>
+        <li><strong>Warning:</strong> Many parameters are out of range. Action required soon.</li>
+        <li><strong>Critical:</strong> Soil is poor, major interventions needed.</li>
+      </ul>
+      <p><strong>How we classify:</strong> Using thresholds for each parameter (pH, moisture, temperature, EC, N, P, K), the app evaluates whether each value is low, high, or optimal. Then, a machine learning classifier combines these to assign one of the 5 states.</p>
+    </div>
+  </div>
+
+</div>
+
+
+  <script>
+    let isOpen = false;
+
+    function toggleNav() {
+      const sidebar = document.getElementById("sidebar");
+      const toggleArrow = document.getElementById("toggleArrow");
+
+      if (isOpen) {
+        sidebar.style.width = "0";
+        toggleArrow.innerHTML = "⬅"; // arrow pointing left to open
+        isOpen = false;
+      } else {
+        sidebar.style.width = "250px";
+        toggleArrow.innerHTML = "➔"; // arrow pointing right to close
+        isOpen = true;
+      }
+    }
+    
+  </script>
+</body>
+</html>

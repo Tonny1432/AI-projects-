@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>History - Terra Mind</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">➔</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="result.html">Result</a>
+    <a href="input.html" class="active">Soil Input</a> 
+    <div class="dropdown">
+      <button class="dropbtn">More ▼</button>
+      <div class="dropdown-content">
+        <a href="index.html">Logout</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow toggle button -->
+  <span id="toggleArrow" class="openbtn" onclick="toggleNav()">⬅</span>
+
+  <!-- Main Content -->
+  <div id="history-main" class="container">
+    <h2>History</h2>
+    <div id="historyList"></div>
+      <!-- Dynamically filled by JS -->
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    let isOpen = false;
+
+    function toggleNav() {
+      const sidebar = document.getElementById("sidebar");
+      const toggleArrow = document.getElementById("toggleArrow");
+
+      if (isOpen) {
+        sidebar.style.width = "0";
+        toggleArrow.innerHTML = "⬅"; // arrow pointing left to open
+        isOpen = false;
+      } else {
+        sidebar.style.width = "250px";
+        toggleArrow.innerHTML = "➔"; // arrow pointing right to close
+        isOpen = true;
+      }
+    }
+  </script>
+</body>
+</html>

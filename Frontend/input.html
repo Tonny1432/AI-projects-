@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Soil Input - Terra Mind</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">➔</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="result.html">Result</a>
+    <a href="history.html">History</a>
+    <a href="input.html" class="active">Soil Input</a>
+    <div class="dropdown">
+      <button class="dropbtn">More ▼</button>
+      <div class="dropdown-content">
+        <a href="index.html">Logout</a>
+        <a href="about.html">About</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow toggle button -->
+  <span id="toggleArrow" class="openbtn" onclick="toggleNav()">⬅</span>
+
+  <!-- Main Content -->
+  <div id="main" class="container">
+    <h2>Enter Soil Parameters</h2>
+
+    <!-- File Upload -->
+    <div class="file-upload">
+      <p> Upload CSV/Excel file</p>
+      <input type="file" id="soilFile" accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+    </div>
+
+    <p>OR</p>
+
+    <!-- Manual Input Form -->
+    <form id="soilForm">
+      <input type="number" step="0.1" id="ph" placeholder="pH" required>
+      <input type="number" step="0.1" id="temperature" placeholder="Temperature (°C)" required>
+      <input type="number" step="0.1" id="moisture" placeholder="Moisture (%)" required>
+      <input type="number" step="0.1" id="N" placeholder="Nitrogen (N)" required>
+      <input type="number" step="0.1" id="P" placeholder="Phosphorus (P)" required>
+      <input type="number" step="0.1" id="K" placeholder="Potassium (K)" required>
+      <input type="number" step="0.1" id="EC" placeholder="Electrical Conductivity (EC)" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script>
+    let isOpen = false;
+
+    function toggleNav() {
+      const sidebar = document.getElementById("sidebar");
+      const toggleArrow = document.getElementById("toggleArrow");
+
+      if (isOpen) {
+        sidebar.style.width = "0";
+        toggleArrow.innerHTML = "⬅"; 
+        isOpen = false;
+      } else {
+        sidebar.style.width = "250px";
+        toggleArrow.innerHTML = "➔"; 
+        isOpen = true;
+      }
+    }
+
+    // Handle file upload
+    document.getElementById('soilFile').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const data = new Uint8Array(evt.target.result);
+        const workbook = XLSX.read(data, {type: 'array'});
+
+        // Assuming the first sheet
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+        console.log('Uploaded Data:', jsonData);
+        alert('File uploaded successfully! Check console for data.');
+
+        // Optionally: populate form fields with the first row
+        if(jsonData.length > 0){
+          const row = jsonData[0];
+          document.getElementById('ph').value = row.ph || '';
+          document.getElementById('temperature').value = row.temperature || '';
+          document.getElementById('moisture').value = row.moisture || '';
+          document.getElementById('N').value = row.N || '';
+          document.getElementById('P').value = row.P || '';
+          document.getElementById('K').value = row.K || '';
+          document.getElementById('EC').value = row.EC || '';
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    });
+  </script>
+</body>
+</html>
+

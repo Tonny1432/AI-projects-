@@ -1,55 +1,319 @@
-body {
-  font-family: Arial, sans-serif;
-  background-image: url('https://cdn.pixabay.com/photo/2021/01/16/10/48/green-5921721_960_720.jpg');
-  background-size: cover;     /* Ensures the image covers the entire viewport */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  margin: 0;
-  padding: 0;
+/* Full page gradient background *//* Style for navigation bar */
+nav {
   display: flex;
-  justify-content: center;
-}
-
-
-.container {
-  margin-top: 50px;
-  background: white;
-  padding: 20px 30px;
+  justify-content: center;   /* Centers links horizontally */
+  background-color: rgba(255, 255, 255, 0.2); /* Optional: semi-transparent */
+  padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  width: 400px;
 }
 
-h1 {
-  text-align: center;
-  color: #2d6a4f;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-input, button {
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-button {
-  background: #2d6a4f;
+/* Style for navigation links */
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
   color: white;
-  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
   transition: 0.3s;
 }
 
-button:hover {
-  background: #1b4332;
+nav a:hover {
+  color: #ffd700; /* Highlight color */
 }
 
-.results {
-  margin-top: 20px;
-  padding: 10px;
-  border-top: 2px solid #ccc;
+body {
+
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertical centering */
+  align-items: center;     /* Horizontal centering */
+  background: linear-gradient(135deg, rgba(10,146,161,1), rgba(213,121,7,1));
+  font-family: Arial, sans-serif;   
 }
+
+/* Container with slight padding */
+.container {
+  background: rgba(255, 255, 255, 0.1); /* semi-transparent background */
+  padding: 30px;
+  border-radius: 12px;
+  width: 450px;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  transition: none;
+  position: fixed;     /* stays fixed in viewport */
+  top: 50%;            /* vertically center */
+  left: 50%;           /* horizontally center */
+  transform: translate(-50%, -50%); /* perfect center */
+  z-index: 1;          /* sidebar overlays on top */
+}
+
+
+/* Headings */
+.container h2 {
+  color: white;
+  margin-bottom: 25px;
+}
+
+/* Input styling */
+form input {
+  align-self: center;
+  margin-left: auto;
+   margin-right: auto;
+  display: block;
+  width: 60%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+}
+form input::placeholder {
+  color: #555;
+  font-weight: 500;
+  
+}
+
+/* Button styling */
+form button {
+  align-self: center;
+  width: 60%;
+  padding: 12px;
+  background-color: white;
+  color: #0A92A1;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+form button:hover {
+  background-color: #D57907;
+  color: white;
+}
+/* Sidebar hidden by default */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 146, 161, 1),
+    rgba(213, 121, 7, 1)
+  );
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+  z-index: 1000;
+}
+
+/* Sidebar */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 146, 161, 1),
+    rgba(213, 121, 7, 1)
+  );
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  z-index: 2;
+}
+
+.sidebar a,
+.sidebar .dropbtn {
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar a:hover,
+.sidebar .dropbtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffd700;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 20px;
+  right: -40px;
+  font-size: 20px;
+  cursor: pointer;
+  background: #0a92a1;
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+/* Dropdown inside sidebar */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  flex-direction: column;
+  background: rgba(0,0,0,0.3);
+}
+
+.dropdown-content a {
+  padding: 10px 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+/* Arrow toggle button */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #0a92a1;
+  color: white;
+  padding: 10px 12px;
+  border: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  z-index: 3;
+  transition: 0.3s;
+}
+
+.openbtn:hover {
+  background-color: #097a88;
+}
+/* Remove dots from result lists */
+#resultDisplay ul {
+  list-style-type: none;   /* removes the bullets */
+  padding-left: 0;         /* removes left indent */
+}
+
+#resultDisplay li {
+  margin: 6px 0;           /* adds spacing between items */
+}
+/* Make only the history list scrollable */
+/*#historyList {
+  max-height: 100px; 
+  width: 10;     /* adjust height as needed */
+/*  overflow-y: auto;       /* vertical scroll */
+/*  padding: 10px;
+/*  background: rgba(0, 0, 0, 0.2);
+/*  border-radius: 8px;
+/*text-align: left;
+/*  margin-top: 20px;
+/*}
+
+/* Optional: smooth custom scrollbar for webkit browsers */
+/*#historyList::-webkit-scrollbar {
+  width: 8px;
+}
+
+#historyList::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 4px;
+}
+
+#historyList::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}*/
+.soil-states {
+/* margin-top: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 15px;*/
+  text-align: left;
+  color: white;
+  font-size: 18px;
+  max-height: 250px;   /* limit height */
+  /*overflow-y: auto;*/ 
+}
+
+.soil-states h2 {
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.soil-states ul {
+  list-style: disc inside;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.soil-states li {
+  margin-bottom: 8px;
+}
+#main {
+  height: 100vh;  
+  width: 30%;      /* take full screen height */
+  /*overflow-y: auto;     /* enable vertical scroll */
+  padding: 20px;
+  
+}
+h1, h2 {
+  margin: 5;
+  padding: 5;
+}
+p{
+  margin: 3;
+  padding: 3;
+}
+#dashboard-main {
+  height: 100vh;  
+  width: 60%;      /* take full screen height */
+  /*overflow-y: auto;     /* enable vertical scroll */
+  padding: 20px;}
+#result-main {
+  height: 100vh;  
+  width: 30%;      /* take full screen height */
+  overflow-y: auto;     /* enable vertical scroll */
+  padding: 20px;
+  scrollbar-width: none;}
+#result-main::-webkit-scrollbar {
+  display: none;
+}
+#history-main {
+  height: 100vh;  
+  width: 60%;      /* take full screen height */
+  overflow-y: auto;     /* enable vertical scroll */
+  padding: 20px;
+  scrollbar-width: none;}
+
+#histroy-main::-webkit-scrollbar{
+  display: none;
+
+}
+/* Fix bullet alignment in history list */
+#historyList {
+  list-style-position: inside;   /* bring bullet closer */
+  padding-left: 0;               /* remove default left padding */
+  margin-left: 0;                /* remove default margin */
+}
+
+#historyList li {
+  margin: 5px 0;                 /* spacing between items */
+  color: white;                  /* keep visible on gradient */
+  font-size: 18px;               /* make readable */
+  line-height: 1.5;              /* nice spacing */
+}
+
+
