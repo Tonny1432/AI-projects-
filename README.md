@@ -1,49 +1,89 @@
-🚀 Machine Learning Model Comparison
+# 🧠 Bank Marketing Classification: Deep Learning vs Random Forest
 
-Decision Tree vs Random Forest vs Linear Regression
+This project compares the performance of a Deep Learning model and a Random Forest classifier on a real-world bank marketing dataset.
 
-📌 Project Overview
+---
 
-This project demonstrates the comparison between three popular machine learning models:
+## 📌 Objective
+To classify whether a customer will subscribe to a term deposit (yes/no) and compare model performance using different approaches.
 
-🌳 Decision Tree Regressor
-🌲 Random Forest Regressor
-📈 Linear Regression
+---
 
-The goal is to understand how different models perform on the same dataset and why choosing the right model is important.
+## ⚙️ Technologies Used
+- Python  
+- PyTorch (Deep Learning)  
+- Scikit-learn (Machine Learning)  
+- Pandas (Data Processing)  
+- Matplotlib (Visualization)  
 
-🧠 Objective
-Train multiple models on the same dataset
-Evaluate performance using metrics
-Compare results
-Understand model behavior
-📊 Dataset
+---
 
-A simple synthetic dataset is used:
+## 📊 Dataset
+- Bank Marketing Dataset  
+- Preprocessed to handle:
+  - Missing values  
+  - Duplicate records  
+  - Outliers (IQR method)  
+  - Categorical encoding  
 
-Input (X): 3 features
-Output (y): Linear pattern
+---
 
-Example:
+## 🔧 Data Preprocessing
+- Removed duplicates and null values  
+- Applied IQR method for outlier removal  
+- Encoded categorical features using LabelEncoder  
+- Converted target variable (`y`) into binary (0/1)
 
-X → [0,1,2] → y = 3  
-X → [2,3,4] → y = 9  
-...
+---
 
-👉 The dataset follows a linear relationship 
------
-⚙️ Models Used
-🌳 Decision Tree Regressor
-Splits data into regions
-Simple but can underperform
-🌲 Random Forest Regressor
-Ensemble of multiple trees
-Reduces overfitting
-📈 Linear Regression
-Fits a straight line
-Best for linear data
+## 🤖 Models Used
 
-📈 Evaluation Metrics
-Mean Squared Error (MSE) → Measures squared error
-Mean Absolute Error (MAE) → Measures average error
-R² Score → Measures model performance
+### 1️⃣ Deep Learning Model (PyTorch)
+- Multi-layer neural network:
+  - Input → 32 → 16 → 8 → Output  
+- Activation: ReLU  
+- Loss Function: CrossEntropyLoss (with class weights)  
+- Optimizer: Adam  
+
+### 2️⃣ Machine Learning Model
+- Random Forest Classifier  
+
+---
+
+## 📈 Evaluation Metrics
+- Accuracy  
+- Confusion Matrix  
+- Classification Report  
+
+---
+
+## 📊 Results
+- Compared performance of both models  
+- Visualized accuracy using bar chart  
+
+---
+
+## 📌 Key Learnings
+- Handling imbalanced data using class weights  
+- Difference between ML and DL approaches  
+- Importance of preprocessing for model performance  
+- Understanding evaluation metrics in classification  
+
+---
+
+## 📷 Output
+(Add screenshots here: confusion matrix / accuracy graph)
+
+---
+
+## 🚀 Future Improvements
+- Hyperparameter tuning  
+- Use of advanced models (XGBoost, CNNs)  
+- Better feature engineering  
+
+---
+
+## 📎 Note
+This project focuses on model comparison and evaluation rather than real-time prediction input.
+
+---
